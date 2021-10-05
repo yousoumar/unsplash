@@ -1,0 +1,17 @@
+{
+  "name": "my-unsplash",
+  "version": "1.0.0",
+  "author": "yousoumar",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "devDependencies": {
+    "dotenv": "^10.0.0",
+    "nodemon": "^2.0.13"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "morgan": "^1.10.0"
+  }
+}
