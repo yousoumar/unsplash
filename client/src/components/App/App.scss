@@ -1,0 +1,19 @@
+.app {
+  main {
+    margin-top: 2rem;
+    display: grid;
+    gap: 1rem;
+    img {
+      border-radius: 16px;
+    }
+  }
+
+  @media all and (min-width: 750px) {
+    & {
+      main {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+  }
+}

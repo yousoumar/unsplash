@@ -6,7 +6,7 @@ export default function Header() {
       <div className="log">
         <img src={logo} alt="" />
       </div>
-      <input type="search" name="" placeholder="Serach by name" />
+      <input type="text" name="" placeholder="Serach by name" />
       <button>Add a photo</button>
     </header>
   );

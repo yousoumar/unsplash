@@ -1,19 +1,45 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const morgan = require("morgan");
+const mongoose = require("mongoose");
+const Image = require("./models/image");
 
 const app = express();
 app.use(morgan("dev"));
+app.use(express.static("uploads"));
+app.use(express.static("client/build"));
 dotenv.config();
 
-app.get("/", (req, res) => {
-  res.send("<p>Hello World</p>");
-});
 app.get("/api", (req, res) => {
-  res.json({ message: "Hello Word" });
+  Image.find()
+    .then((result) => {
+      const images = result.map((image) => {
+        return {
+          url: process.env.URL + image.name,
+          label: image.label,
+        };
+      });
+      res.json({ images });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 });
 
-const PORT = process.env.PORT;
-app.listen(PORT, () => {
-  console.log("server running on port " + PORT);
+app.get("/*", (req, res) => {
+  res.sendFile(__dirname + "/client/build/index.html");
 });
+
+const port = process.env.PORT;
+
+mongoose
+  .connect(process.env.DBURL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then((result) => {
+    app.listen(port, () => {
+      console.log("server running on port " + port);
+    });
+  })
+  .catch((err) => console.log(err));

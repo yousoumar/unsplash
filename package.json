@@ -7,11 +7,12 @@
     "start": "nodemon server.js"
   },
   "devDependencies": {
-    "dotenv": "^10.0.0",
-    "nodemon": "^2.0.13"
+    "nodemon": "^2.0.13",
+    "dotenv": "^10.0.0"
   },
   "dependencies": {
     "express": "^4.17.1",
+    "mongoose": "^6.0.9",
     "morgan": "^1.10.0"
   }
 }
