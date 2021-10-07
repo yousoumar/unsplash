@@ -6,7 +6,6 @@
     .img {
       position: relative;
       height: 400px;
-      cursor: pointer;
 
       &::after {
         content: "";
@@ -37,9 +36,31 @@
         visibility: hidden;
         transition: 0.3s;
       }
+      button {
+        color: #eb5757;
+        border: 2px solid #eb5757;
+        border-radius: 16px;
+        padding: 0.3rem 0.7rem;
+        background-color: transparent;
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        z-index: 1;
+        cursor: pointer;
+        transition: 0.3s;
+        font-size: 13px;
+        opacity: 0;
+        visibility: hidden;
+        transition: 0.3s;
+        &:hover {
+          background-color: #eb5757;
+          color: white;
+        }
+      }
       &:hover {
         .label,
-        &::after {
+        &::after,
+        button {
           opacity: 1;
           visibility: visible;
         }

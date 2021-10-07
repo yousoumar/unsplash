@@ -22,13 +22,32 @@ function App() {
     };
     fetcher();
   }, []);
+
+  const handleClick = (id, name) => {
+    fetch("/api/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        task: "delete",
+        id: id,
+        name: name,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => setImages(data.images));
+  };
   return (
     <div className="app">
       <Header />
       <main>
         {images.map((image) => (
-          <div className="img" key={image.url}>
+          <div className="img" key={image.id}>
             <img src={image.url} alt="" />
+            <button onClick={() => handleClick(image.id, image.name)}>
+              Delete
+            </button>
             <p className="label">{image.label}</p>
           </div>
         ))}
