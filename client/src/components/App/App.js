@@ -27,8 +27,9 @@ function App() {
       <Header />
       <main>
         {images.map((image) => (
-          <div className="image-wrapper" key={image.url}>
+          <div className="img" key={image.url}>
             <img src={image.url} alt="" />
+            <p className="label">{image.label}</p>
           </div>
         ))}
       </main>

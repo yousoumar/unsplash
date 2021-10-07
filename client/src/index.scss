@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 *,
 ::after,
 ::before {
@@ -9,7 +10,9 @@
 }
 
 body {
+  font-family: "Poppins", sans-serif;
   padding: 1rem 1rem;
+  color: white;
 }
 img {
   max-width: 100%;

@@ -3,8 +3,47 @@
     margin-top: 2rem;
     display: grid;
     gap: 1rem;
-    img {
-      border-radius: 16px;
+    .img {
+      position: relative;
+      height: 400px;
+      cursor: pointer;
+
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 16px;
+        background: rgba(0, 0, 0, 0.38);
+        opacity: 0;
+        visibility: hidden;
+        transition: 0.3s;
+      }
+      img {
+        border-radius: 16px;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .label {
+        position: absolute;
+        bottom: 0rem;
+        z-index: 1;
+        padding: 2rem 1rem;
+        opacity: 0;
+        visibility: hidden;
+        transition: 0.3s;
+      }
+      &:hover {
+        .label,
+        &::after {
+          opacity: 1;
+          visibility: visible;
+        }
+      }
     }
   }
 
@@ -12,7 +51,7 @@
     & {
       main {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(auto-fill, minmax(385px, 1fr));
       }
     }
   }
