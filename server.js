@@ -11,8 +11,8 @@ const { sendImages } = require("./tools/functions");
 const app = express();
 app.use(morgan("dev"));
 app.use(express.json());
-app.use(express.static("uploads"));
-app.use(express.static("client/build"));
+app.use(express.static("./uploads"));
+app.use(express.static("./client/build"));
 dotenv.config();
 
 const fileExtensions = ["image/jpeg", "image/jpg", "image/png", "image/svg"];
@@ -21,7 +21,7 @@ const fileExtensions = ["image/jpeg", "image/jpg", "image/png", "image/svg"];
 const storage = multer.diskStorage({
   //destination for files
   destination: function (request, file, callback) {
-    callback(null, "./uploads");
+    callback(null, path.join(__dirname, "/uploads"));
   },
 
   //add back the extension
