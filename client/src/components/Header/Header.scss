@@ -4,7 +4,17 @@
   grid-template-rows: auto auto;
   justify-content: space-between;
   align-items: center;
+  color: black;
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
 
+    img {
+      width: 2rem;
+      margin-bottom: 0.4rem;
+    }
+  }
   input {
     margin: 1rem auto 0 auto;
     grid-column: 1 / -1;

@@ -3,8 +3,9 @@ import logo from "../../assets/logo.svg";
 export default function Header({ setShowModal, showModal }) {
   return (
     <header className="header">
-      <div className="log">
+      <div className="logo">
         <img src={logo} alt="" />
+        <span>Unsplash</span>
       </div>
       <input type="text" name="" placeholder="Serach by name" />
       <button className="button" onClick={() => setShowModal(!showModal)}>
