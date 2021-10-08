@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import Header from "../Header/Header";
+import Uploader from "../Uploader/Uploader";
 import "./App.scss";
 
 function App() {
   const [images, setImages] = useState([]);
+  const [showModal, setShowModal] = useState(false);
   console.log(images);
   useEffect(() => {
     const fetcher = async () => {
@@ -23,14 +25,13 @@ function App() {
     fetcher();
   }, []);
 
-  const handleClick = (id, name) => {
+  const handleDelete = (id, name) => {
     fetch("/api/", {
-      method: "POST",
+      method: "DELETE",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        task: "delete",
         id: id,
         name: name,
       }),
@@ -40,18 +41,21 @@ function App() {
   };
   return (
     <div className="app">
-      <Header />
+      <Header setShowModal={setShowModal} showModal={showModal} />
       <main>
         {images.map((image) => (
           <div className="img" key={image.id}>
             <img src={image.url} alt="" />
-            <button onClick={() => handleClick(image.id, image.name)}>
+            <button onClick={() => handleDelete(image.id, image.name)}>
               Delete
             </button>
             <p className="label">{image.label}</p>
           </div>
         ))}
       </main>
+      {showModal && (
+        <Uploader setImages={setImages} setShowModal={setShowModal} />
+      )}
     </div>
   );
 }
