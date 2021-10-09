@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import Header from "../Header/Header";
+import Loader from "../Loader/Loader";
 import Uploader from "../Uploader/Uploader";
 import "./App.scss";
 
 function App() {
   const [images, setImages] = useState([]);
   const [showModal, setShowModal] = useState(false);
+  const [loading, setLoading] = useState(true);
   console.log(images);
   useEffect(() => {
     const fetcher = async () => {
@@ -15,6 +17,9 @@ function App() {
           const data = await res.json();
           console.log(data);
           setImages(data.images);
+          setTimeout(() => {
+            setLoading(false);
+          }, 1000);
         } else {
           throw new Error("bad response from the api");
         }
@@ -26,6 +31,7 @@ function App() {
   }, []);
 
   const handleDelete = (id, name) => {
+    setLoading(true);
     fetch("/api/", {
       method: "DELETE",
       headers: {
@@ -37,7 +43,12 @@ function App() {
       }),
     })
       .then((res) => res.json())
-      .then((data) => setImages(data.images));
+      .then((data) => {
+        setImages(data.images);
+        setTimeout(() => {
+          setLoading(false);
+        }, 1000);
+      });
   };
   return (
     <div className="app">
@@ -59,6 +70,8 @@ function App() {
       {showModal && (
         <Uploader setImages={setImages} setShowModal={setShowModal} />
       )}
+
+      {loading && <Loader />}
     </div>
   );
 }
