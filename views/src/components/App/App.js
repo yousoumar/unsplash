@@ -40,17 +40,26 @@ function App() {
         setImages={setImages}
         imagesRef={imagesRef}
       />
-      <main>
-        {images.map((image) => (
-          <Item
-            image={image}
-            key={image.url}
-            setLoading={setLoading}
-            setImages={setImages}
-            imagesRef={imagesRef}
-          />
-        ))}
-      </main>
+      {!images.length >= 1 && !imagesRef.current.length >= 1 && (
+        <p className="no-image">No one has posted an image for now, sadly ! </p>
+      )}
+      {!images.length >= 1 && imagesRef.current.length >= 1 && (
+        <p className="no-image">No image match your search for now, sadly ! </p>
+      )}
+      {images.length >= 1 && (
+        <main>
+          {images.map((image) => (
+            <Item
+              image={image}
+              key={image.url}
+              setLoading={setLoading}
+              setImages={setImages}
+              imagesRef={imagesRef}
+            />
+          ))}
+        </main>
+      )}
+
       {showModal && (
         <Uploader
           setImages={setImages}
