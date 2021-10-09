@@ -9,7 +9,7 @@ const app = express();
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.static("./uploads"));
-app.use(express.static("./client/build"));
+app.use(express.static("./views/build"));
 dotenv.config();
 
 const fileExtensions = ["image/jpeg", "image/jpg", "image/png", "image/svg"];
@@ -35,9 +35,6 @@ const upload = multer({
 });
 
 app.use("/api/", upload.single("image"), apiRoutes);
-app.get("/*", (req, res) =>
-  res.sendFile(__dirname + "/client/build/index.html")
-);
 
 const port = process.env.PORT;
 mongoose

@@ -1,1 +1,1 @@
-<img src = "./client/src/assets/screenshot.png" />
+<img src = "./views/src/assets/screenshot.png" />

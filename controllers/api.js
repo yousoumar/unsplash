@@ -1,6 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const Image = require("../models/image");
+
 function sendImages(req, res) {
   Image.find()
     .then((result) => {
