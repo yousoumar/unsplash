@@ -1,12 +1,11 @@
 import { useRef, useState } from "react";
 import "./Uploader.scss";
 import Loader from "../Loader/Loader";
-export default function Uploader({ setImages, setShowModal }) {
+export default function Uploader({ setImages, setShowModal, imagesRef }) {
   const fileExtensions = ["image/jpeg", "image/jpg", "image/png", "image/svg"];
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-
   const fileInputRef = useRef("");
 
   async function sendFile(file, label) {
@@ -34,14 +33,14 @@ export default function Uploader({ setImages, setShowModal }) {
       method: "POST",
       body: formData,
     };
-    fetch("/api/", options).then((res) => {
-      res.json().then((data) => {
-        setTimeout(() => {
-          setImages(data.images);
-          setShowModal(false);
-        }, 1000);
-      });
-    });
+    fetch("/api/", options)
+      .then((res) => res.json())
+      .then((data) => {
+        imagesRef.current.unshift(data);
+        setImages(imagesRef.current);
+        setShowModal(false);
+      })
+      .catch((error) => console.log(error));
   }
   return (
     <div className={error ? "uploader error" : "uploader"}>

@@ -4,6 +4,7 @@ const Image = require("../models/image");
 
 function sendImages(req, res) {
   Image.find()
+    .sort({ updatedAt: -1 })
     .then((result) => {
       const images = result.map((image) => {
         return {
@@ -35,7 +36,12 @@ function apiPost(req, res) {
     image
       .save()
       .then((result) => {
-        sendImages(req, res);
+        res.json({
+          id: result._id,
+          url: process.env.URL + result.name,
+          label: result.label,
+          name: result.name,
+        });
       })
       .catch((err) => {
         console.log(err);
@@ -48,7 +54,13 @@ function apiDelete(req, res) {
     fs.unlinkSync(path.join(__dirname, "../uploads/", req.body.name));
     Image.findByIdAndDelete(req.body.id)
       .then((result) => {
-        sendImages(req, res);
+        console.log(result);
+        res.json({
+          id: result._id,
+          url: process.env.URL + result.name,
+          label: result.label,
+          name: result.name,
+        });
       })
       .catch((err) => {
         console.log(err);

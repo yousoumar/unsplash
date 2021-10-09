@@ -1,6 +1,6 @@
 import "./Item.scss";
 
-export default function Item({ image, setLoading, setImages }) {
+export default function Item({ image, setLoading, setImages, imagesRef }) {
   const handleDelete = (id, name) => {
     setLoading(true);
     fetch("/api/", {
@@ -15,11 +15,14 @@ export default function Item({ image, setLoading, setImages }) {
     })
       .then((res) => res.json())
       .then((data) => {
-        setImages(data.images);
-        setTimeout(() => {
-          setLoading(false);
-        }, 1000);
-      });
+        imagesRef.current = imagesRef.current.filter(
+          (image) => image.id !== data.id
+        );
+
+        setImages(imagesRef.current);
+        setLoading(false);
+      })
+      .catch((error) => console.log(error));
   };
   return (
     <div className="item" key={image.id}>

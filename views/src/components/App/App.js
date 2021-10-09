@@ -47,11 +47,16 @@ function App() {
             key={image.url}
             setLoading={setLoading}
             setImages={setImages}
+            imagesRef={imagesRef}
           />
         ))}
       </main>
       {showModal && (
-        <Uploader setImages={setImages} setShowModal={setShowModal} />
+        <Uploader
+          setImages={setImages}
+          setShowModal={setShowModal}
+          imagesRef={imagesRef}
+        />
       )}
 
       {loading && <Loader />}
