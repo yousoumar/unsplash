@@ -34,17 +34,11 @@ img {
   font-size: 0.8rem;
   &:hover {
     background-color: transparent;
-    color: #3db46d;
   }
 
   &.delete {
     border: 2px solid #eb5757;
     background-color: #eb5757;
-
-    &:hover {
-      background-color: transparent;
-      color: #eb5757;
-    }
   }
 
   &.gray {

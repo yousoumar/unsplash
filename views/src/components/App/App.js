@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Header from "../Header/Header";
 import Loader from "../Loader/Loader";
 import Uploader from "../Uploader/Uploader";
@@ -8,15 +8,16 @@ function App() {
   const [images, setImages] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [loading, setLoading] = useState(true);
-  console.log(images);
+  const imagesRef = useRef([]);
+
   useEffect(() => {
     const fetcher = async () => {
       const res = await fetch("/api/");
       try {
         if (res.ok) {
           const data = await res.json();
-          console.log(data);
           setImages(data.images);
+          imagesRef.current = data.images.slice();
           setTimeout(() => {
             setLoading(false);
           }, 1000);
@@ -52,7 +53,12 @@ function App() {
   };
   return (
     <div className="app">
-      <Header setShowModal={setShowModal} showModal={showModal} />
+      <Header
+        setShowModal={setShowModal}
+        showModal={showModal}
+        setImages={setImages}
+        imagesRef={imagesRef}
+      />
       <main>
         {images.map((image) => (
           <div className="img" key={image.id}>
