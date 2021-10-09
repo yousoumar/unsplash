@@ -46,7 +46,10 @@ function App() {
         {images.map((image) => (
           <div className="img" key={image.id}>
             <img src={image.url} alt="" />
-            <button onClick={() => handleDelete(image.id, image.name)}>
+            <button
+              className="button delete"
+              onClick={() => handleDelete(image.id, image.name)}
+            >
               Delete
             </button>
             <p className="label">{image.label}</p>

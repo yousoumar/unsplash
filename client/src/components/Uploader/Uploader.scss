@@ -3,32 +3,56 @@
   z-index: 7;
   width: 100%;
   height: 100%;
+  padding: 1rem;
   top: 0;
   left: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: rgba(0, 0, 0, 0.38);
+
   form {
-    background: #ffffff;
+    background: rgb(41, 41, 41);
     border-radius: 12px;
     padding: 3rem;
-    color: black;
+    margin-bottom: 5rem;
 
-    input {
-      appearance: none;
-      display: block;
-      width: 100%;
-      margin: 2rem 0;
-      border-radius: 12px;
-      background-color: transparent;
-      border: 1px solid black;
-      outline: none;
-      padding: 0.7rem 1rem;
+    .fields {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
 
-      &.file {
-        cursor: pointer;
+      .file {
+        display: none;
       }
+    }
+    .buttons {
+      width: max-content;
+      margin: 3rem auto 0 auto;
+      .button.gray {
+        margin-right: 1rem;
+      }
+    }
+  }
+  &.error form {
+    border: 2px solid #eb5757;
+    animation: uploader 0.5s ease;
+    h2 {
+      color: #eb5757;
+    }
+  }
+
+  @keyframes uploader {
+    0% {
+      transform: translateX(0.5rem);
+    }
+    50% {
+      transform: translateX(-0.5rem);
+    }
+    100% {
+      transform: translateX(0);
     }
   }
 }
