@@ -27,8 +27,6 @@ function apiGet(req, res) {
 
 function apiPost(req, res) {
   if (req.file) {
-    console.log(req.file.filename);
-    console.log(req.body.label);
     const image = new Image({
       label: req.body.label,
       name: req.file.filename,
@@ -54,7 +52,6 @@ function apiDelete(req, res) {
     fs.unlinkSync(path.join(__dirname, "../uploads/", req.body.name));
     Image.findByIdAndDelete(req.body.id)
       .then((result) => {
-        console.log(result);
         res.json({
           id: result._id,
           url: process.env.URL + result.name,

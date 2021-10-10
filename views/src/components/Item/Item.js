@@ -25,7 +25,7 @@ export default function Item({ image, setLoading, setImages, imagesRef }) {
       .catch((error) => console.log(error));
   };
   return (
-    <div className="item" key={image.id}>
+    <div className="item">
       <img src={image.url} alt="" />
       <button
         className="button delete"

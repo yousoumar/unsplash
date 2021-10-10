@@ -41,10 +41,13 @@ function App() {
         imagesRef={imagesRef}
       />
       {!images.length >= 1 && !imagesRef.current.length >= 1 && (
-        <p className="no-image">No one has posted an image for now, sadly ! </p>
+        <p className="no-image">
+          No one has posted an image,
+          <br /> feel free to be the first one !
+        </p>
       )}
       {!images.length >= 1 && imagesRef.current.length >= 1 && (
-        <p className="no-image">No image match your search for now, sadly ! </p>
+        <p className="no-image">No image match your search for now ! </p>
       )}
       {images.length >= 1 && (
         <main>
