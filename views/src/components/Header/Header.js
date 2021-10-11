@@ -19,13 +19,15 @@ export default function Header({
         name=""
         placeholder="Serach by name"
         onInput={(e) => {
-          const value = e.currentTarget.value.trim();
+          const value = e.currentTarget.value.trim().toLowerCase();
           if (value === "") {
             setImages(imagesRef.current);
             return;
           }
           setImages(
-            imagesRef.current.filter((image) => image.label.includes(value))
+            imagesRef.current.filter((image) =>
+              image.label.toLowerCase().includes(value)
+            )
           );
         }}
       />

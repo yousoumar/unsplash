@@ -39,6 +39,10 @@ img {
   &.delete {
     border: 2px solid #eb5757;
     background-color: #eb5757;
+
+    &:hover {
+      background-color: transparent;
+    }
   }
 
   &.gray {

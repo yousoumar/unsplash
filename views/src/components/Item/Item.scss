@@ -1,7 +1,9 @@
 .item {
   position: relative;
   height: 400px;
-
+  background-color: rgb(41, 41, 41);
+  box-shadow: -3px -3px 3px rgb(50, 50, 50), 3px 3px 3px rgb(30, 30, 30);
+  border-radius: 1rem;
   &::after {
     content: "";
     position: absolute;
@@ -45,6 +47,31 @@
     button {
       opacity: 1;
       visibility: visible;
+    }
+  }
+  .modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 4;
+    height: 100%;
+    background-color: rgb(41, 41, 41);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1rem;
+    .container {
+      border-radius: 1rem;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      .button {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+      }
     }
   }
 }
