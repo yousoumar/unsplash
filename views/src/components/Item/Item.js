@@ -1,8 +1,16 @@
 import "./Item.scss";
-import { useState } from "react";
+import { useState, useRef } from "react";
 export default function Item({ image, setLoading, setImages, imagesRef }) {
   const [showDeleteModal, setDeleteModal] = useState(false);
-  const handleDelete = (id, name) => {
+  const [error, setError] = useState("");
+  const ref = useRef("");
+  const handleDelete = (id, name, secretWord) => {
+    if (
+      secretWord.trim().toLowerCase() !== image.secretWord.trim().toLowerCase()
+    ) {
+      setError("The secret word is not correct");
+      return;
+    }
     setLoading(true);
     fetch("/api/", {
       method: "DELETE",
@@ -35,16 +43,27 @@ export default function Item({ image, setLoading, setImages, imagesRef }) {
       {showDeleteModal && (
         <div className="modal">
           <div className="container">
-            <p>You are about to delete this image</p>
+            <h2>{error}</h2>
+            <input
+              type="text"
+              name="secretWord"
+              placeholder="Enter your serect word"
+              ref={ref}
+            />
             <button
               className="button delete"
-              onClick={() => handleDelete(image.id, image.name)}
+              onClick={() =>
+                handleDelete(image.id, image.name, ref.current.value)
+              }
             >
               Delete
             </button>
             <button
               className="button gray"
-              onClick={(e) => setDeleteModal(false)}
+              onClick={(e) => {
+                setError("");
+                setDeleteModal(false);
+              }}
             >
               Cancel
             </button>

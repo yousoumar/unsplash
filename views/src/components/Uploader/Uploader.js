@@ -7,28 +7,32 @@ export default function Uploader({ setImages, setShowModal, imagesRef }) {
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const fileInputRef = useRef("");
+  const fileButtonRef = useRef("");
 
-  async function sendFile(file, label) {
-    if (!label) {
+  const validateFile = (file) => {
+    if (file && fileExtensions.includes(file.type)) {
+      fileButtonRef.current.textContent = "Photo chosen";
+      fileButtonRef.current.style.borderColor = "#bdbdbd";
+    } else {
+      fileButtonRef.current.style.borderColor = "#eb5757";
+      fileButtonRef.current.textContent = "This is not an image";
+      fileInputRef.current.value = "";
+    }
+  };
+
+  async function sendFile(file, label, secretWord) {
+    if (!file || !fileExtensions.includes(file.type) || !label || !secretWord) {
       setError(true);
-      setErrorMessage("Please fill the label field");
+      setErrorMessage("Please fill all the fields");
       return;
     }
-    if (!file) {
-      setError(true);
-      setErrorMessage("Please chose an image ");
-      return;
-    }
-    if (!fileExtensions.includes(file.type)) {
-      setError(true);
-      setErrorMessage("This file is not an image");
-      return;
-    }
+
     setError(false);
     setLoading(true);
     const formData = new FormData();
     formData.append("image", file);
     formData.append("label", label);
+    formData.append("secretWord", secretWord);
     const options = {
       method: "POST",
       body: formData,
@@ -52,28 +56,38 @@ export default function Uploader({ setImages, setShowModal, imagesRef }) {
             e.preventDefault();
             sendFile(
               e.currentTarget.image.files[0],
-              e.currentTarget.label.value
+              e.currentTarget.label.value,
+              e.currentTarget.secretWord.value
             );
           }}
         >
-          <h2>{!error ? "Upload an image" : errorMessage}</h2>
+          <h2>{errorMessage}</h2>
           <div className="fields">
-            <input type="text" placeholder="Label" name="label" />
-            <input
-              type="file"
-              name="image"
-              className="file"
-              ref={fileInputRef}
-            />
             <button
               className="button gray"
               onClick={(e) => {
                 e.preventDefault();
                 fileInputRef.current.click();
               }}
+              ref={fileButtonRef}
             >
-              Chose an image
+              Chose a photo
             </button>
+            <input type="text" placeholder="Give it a label" name="label" />
+            <input
+              type="file"
+              name="image"
+              className="file"
+              ref={fileInputRef}
+              onChange={(e) => {
+                validateFile(e.currentTarget.files[0]);
+              }}
+            />
+            <input
+              type="text"
+              name="secretWord"
+              placeholder="Give it a secret word"
+            />
           </div>
           <div className="buttons">
             <button className="button gray" onClick={() => setShowModal(false)}>

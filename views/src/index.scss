@@ -12,7 +12,7 @@
 body {
   font-family: "Poppins", sans-serif;
   padding: 1rem 1rem;
-  background-color: rgb(41, 41, 41);
+  background: rgb(40, 40, 40);
   color: white;
   max-width: 1440px;
   margin: 0 auto;
@@ -66,6 +66,7 @@ input {
   border: 2px solid #bdbdbd;
   outline: none;
   padding: 0.4rem 1rem;
+  color: #bdbdbd;
 
   &.file {
     cursor: pointer;

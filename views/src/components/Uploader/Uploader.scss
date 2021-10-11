@@ -9,13 +9,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgba(0, 0, 0, 0.3);
+  background: rgb(40, 40, 40);
+  h2 {
+    margin-bottom: 2rem;
+    color: #eb5757;
+  }
 
   form {
-    background: rgb(41, 41, 41);
+    box-shadow: -3px -3px 3px rgb(50, 50, 50), 3px 3px 3px rgb(30, 30, 30);
     border-radius: 12px;
     padding: 3rem;
     margin-bottom: 5rem;
+    max-width: 30rem;
 
     .fields {
       display: flex;
@@ -23,14 +28,24 @@
       gap: 1rem;
       flex-wrap: wrap;
       justify-content: center;
-
+      input {
+        margin: 0;
+      }
       .file {
         display: none;
+      }
+      .gray {
+        background-color: transparent;
+        color: white;
+        width: 100%;
+        text-align: left;
+        color: #bdbdbd;
+        font-size: 14px;
       }
     }
     .buttons {
       width: max-content;
-      margin: 3rem auto 0 auto;
+      margin: 2rem auto 0 auto;
       .button.gray {
         margin-right: 1rem;
       }
@@ -39,9 +54,6 @@
   &.error form {
     border: 2px solid #eb5757;
     animation: uploader 0.5s ease;
-    h2 {
-      color: #eb5757;
-    }
   }
 
   @keyframes uploader {

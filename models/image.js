@@ -11,6 +11,10 @@ const imageSchema = new Schema(
       type: String,
       required: true,
     },
+    secretWord: {
+      type: String,
+      required: true,
+    },
   },
   { timestamps: true }
 );

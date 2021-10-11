@@ -5,8 +5,18 @@
   }
   .no-image {
     font-size: 1.2rem;
-    margin-top: 8rem;
+    background: rgb(40, 40, 40);
+    box-shadow: -3px -3px 3px rgb(50, 50, 50), 3px 3px 3px rgb(30, 30, 30);
+    border-radius: 1rem;
+    padding: 2rem 1rem;
+    max-width: 30rem;
     text-align: center;
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -60%);
+    width: calc(100% - 1rem);
+    margin: 0 auto;
   }
   @media all and (min-width: 750px) {
     & {

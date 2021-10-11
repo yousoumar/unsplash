@@ -12,6 +12,7 @@ function sendImages(req, res) {
           url: process.env.URL + image.name,
           label: image.label,
           name: image.name,
+          secretWord: image.secretWord,
         };
       });
       res.json({ images });
@@ -30,6 +31,7 @@ function apiPost(req, res) {
     const image = new Image({
       label: req.body.label,
       name: req.file.filename,
+      secretWord: req.body.secretWord,
     });
     image
       .save()
@@ -39,6 +41,7 @@ function apiPost(req, res) {
           url: process.env.URL + result.name,
           label: result.label,
           name: result.name,
+          secretWord: result.secretWord,
         });
       })
       .catch((err) => {
@@ -54,9 +57,6 @@ function apiDelete(req, res) {
       .then((result) => {
         res.json({
           id: result._id,
-          url: process.env.URL + result.name,
-          label: result.label,
-          name: result.name,
         });
       })
       .catch((err) => {

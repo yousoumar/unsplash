@@ -1,7 +1,7 @@
 .item {
   position: relative;
   height: 400px;
-  background-color: rgb(41, 41, 41);
+  background: rgb(40, 40, 40);
   box-shadow: -3px -3px 3px rgb(50, 50, 50), 3px 3px 3px rgb(30, 30, 30);
   border-radius: 1rem;
   &::after {
@@ -16,6 +16,12 @@
     opacity: 0;
     visibility: hidden;
     transition: 0.3s;
+  }
+  h2 {
+    color: #eb5757;
+  }
+  input {
+    margin: 0;
   }
   img {
     border-radius: 16px;
@@ -56,11 +62,12 @@
     width: 100%;
     z-index: 4;
     height: 100%;
-    background-color: rgb(41, 41, 41);
+    background: rgb(40, 40, 40);
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 1rem;
+
     .container {
       border-radius: 1rem;
       padding: 2rem;
