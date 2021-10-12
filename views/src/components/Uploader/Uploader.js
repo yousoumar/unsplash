@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import "./Uploader.scss";
 import Loader from "../Loader/Loader";
 export default function Uploader({ setImages, setShowModal, imagesRef }) {
-  const fileExtensions = ["image/jpeg", "image/jpg", "image/png", "image/svg"];
+  const supportedFiles = ["image/jpeg", "image/jpg", "image/png", "image/svg"];
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
@@ -10,7 +10,7 @@ export default function Uploader({ setImages, setShowModal, imagesRef }) {
   const fileButtonRef = useRef("");
 
   const validateFile = (file) => {
-    if (file && fileExtensions.includes(file.type)) {
+    if (file && supportedFiles.includes(file.type)) {
       fileButtonRef.current.textContent = "Photo chosen";
       fileButtonRef.current.style.borderColor = "#bdbdbd";
     } else {
@@ -21,7 +21,7 @@ export default function Uploader({ setImages, setShowModal, imagesRef }) {
   };
 
   async function sendFile(file, label, secretWord) {
-    if (!file || !fileExtensions.includes(file.type) || !label || !secretWord) {
+    if (!file || !supportedFiles.includes(file.type) || !label || !secretWord) {
       setError(true);
       setErrorMessage("Please fill all the fields");
       return;

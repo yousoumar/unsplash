@@ -13,7 +13,7 @@ app.use(express.static("./uploads"));
 app.use(express.static("./views/build"));
 dotenv.config();
 
-const fileExtensions = ["image/jpeg", "image/jpg", "image/png", "image/svg"];
+const supportedFiles = ["image/jpeg", "image/jpg", "image/png", "image/svg"];
 const storage = multer.diskStorage({
   destination: function (request, file, callback) {
     callback(null, path.join(__dirname, "/uploads"));
@@ -27,7 +27,7 @@ const storage = multer.diskStorage({
 const upload = multer({
   storage: storage,
   fileFilter: function (req, file, callback) {
-    if (!fileExtensions.includes(file.mimetype)) {
+    if (!supportedFiles.includes(file.mimetype)) {
       callback(null, false);
     } else {
       callback(null, true);
