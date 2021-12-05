@@ -9,7 +9,7 @@ function sendImages(req, res) {
       const images = result.map((image) => {
         return {
           id: image._id,
-          url: process.env.URL + image.name,
+          url: image.name,
           label: image.label,
           name: image.name,
           secretWord: image.secretWord,

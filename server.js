@@ -7,11 +7,12 @@ const multer = require("multer");
 const apiRoutes = require("./routes/api");
 
 const app = express();
+dotenv.config();
+
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.static("./uploads"));
-app.use(express.static("./views/build"));
-dotenv.config();
+app.use(express.static("./client/build"));
 
 const supportedFiles = ["image/jpeg", "image/jpg", "image/png", "image/svg"];
 const storage = multer.diskStorage({
@@ -39,10 +40,7 @@ app.use("/api/", upload.single("image"), apiRoutes);
 
 const port = process.env.PORT;
 mongoose
-  .connect(process.env.DBURL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  .connect(process.env.DBURL)
   .then((result) => {
     app.listen(port, () => {
       console.log("server running on port " + port);

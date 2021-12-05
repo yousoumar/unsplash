@@ -1,6 +1,6 @@
 # Unsplash
 
-With validation both in the browser and on the server, this project is a minimaliste Unsplash clone, carried out with `Express`, `Node`, `MongoDB`, `React`, and styled with `SASS`. Quite user friendly, the app allows to upload an image, search instantly among existing images, and finally delete an image.
+With validation both in the browser and on the server, this project is a minimaliste Unsplash clone, carried out with `Express`, `Node`, `MongoDB`, `React`, and styled with `Sass`. Quite user friendly, the app allows to upload an image, search instantly among existing images, and finally delete an image.
 
 # Overview
 
