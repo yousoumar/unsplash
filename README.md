@@ -4,6 +4,6 @@ With validation both in the browser and on the server, this project is a minimal
 
 # Overview
 
-The project is hosted by `Heroku`, et and you can test it by clicking on the link above, in the `Github` about section. With the hope that, some one will find something interesting in this repository, it was your unknown friend !😉
+The project is hosted by `Heroku`, you can test it by clicking on the link above, in the `Github` about section.
 
-<img src = "./views/src/assets/screenshot.png" />
+<img src = "./client/src/assets/screenshot.png" />
