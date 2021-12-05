@@ -38,7 +38,7 @@ function apiPost(req, res) {
       .then((result) => {
         res.json({
           id: result._id,
-          url: process.env.URL + result.name,
+          url: result.name,
           label: result.label,
           name: result.name,
           secretWord: result.secretWord,
